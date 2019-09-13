@@ -1,3 +1,7 @@
+Simple: $ ./run
+
+Detailed:
+
 To build the container image:
 
 $ make build
