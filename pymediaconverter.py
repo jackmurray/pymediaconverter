@@ -2,7 +2,7 @@ import pyinotify
 
 class FileHandler(pyinotify.ProcessEvent):
 	def process_IN_CLOSE_WRITE(self, event):
-		print("File with name=" + event.name + " was CLOSE_WRITE'd")
+		print("File with path=" + event.path + ", name=" + event.name + " was CLOSE_WRITE'd")
 
 print("PyMediaConverter loading.")
 
