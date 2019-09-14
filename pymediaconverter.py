@@ -4,6 +4,8 @@ class FileHandler(pyinotify.ProcessEvent):
 	def process_IN_CLOSE_WRITE(self, event):
 		print("File with name=" + event.name + " was CLOSE_WRITE'd")
 
+print("PyMediaConverter loading.")
+
 # Instanciate a new WatchManager (will be used to store watches).
 wm = pyinotify.WatchManager()
 # Associate this WatchManager with a Notifier (will be used to report and
@@ -14,4 +16,5 @@ wm.add_watch('/tmp', pyinotify.IN_CLOSE_WRITE)
 handler = FileHandler()
 notifier = pyinotify.Notifier(wm, default_proc_fun=handler)
 # Loop forever and handle events.
+print ("Starting event loop.")
 notifier.loop()
