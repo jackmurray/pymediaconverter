@@ -2,10 +2,10 @@ FROM python:3
 
 WORKDIR .
 
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
-COPY . .
+COPY src /app
 
-CMD [ "python", "pymediaconverter.py" ] 
+CMD [ "python", "/app/pymediaconverter.py" ] 
 
