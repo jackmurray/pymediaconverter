@@ -1,4 +1,2 @@
 #!/bin/sh
-touch /tmp/test
-mkdir /tmp/subdir
-touch /tmp/subdir/subfile
+cat test.txt | sudo docker exec -i pymediaconverter /bin/sh
