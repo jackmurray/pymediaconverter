@@ -1,16 +1,21 @@
 import pyinotify
 import mediaidentifier
 import logging
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--loglevel", help="Set the python logging level")
+args = parser.parse_args()
 
 class FileHandler(pyinotify.ProcessEvent):
 	def process_IN_CLOSE_WRITE(self, event):
 		logging.debug("File with path=" + event.path + ", name=" + event.name + " was CLOSE_WRITE'd")
 		logging.debug("Is audio file: " + str(ident.identifyAudio(event.name)))
 
-loglevel = logging.DEBUG
+loglevel = getattr(args, "loglevel", "WARNING")
 logging.basicConfig(level=loglevel)
 
-logging.info("PyMediaConverter loading.")
+logging.info("PyMediaConverter loading. loglevel=" + str(loglevel))
 
 # Instanciate a new WatchManager (will be used to store watches).
 wm = pyinotify.WatchManager()
