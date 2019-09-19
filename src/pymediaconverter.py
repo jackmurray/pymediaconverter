@@ -1,12 +1,16 @@
 import pyinotify
 import mediaidentifier
+import logging
 
 class FileHandler(pyinotify.ProcessEvent):
 	def process_IN_CLOSE_WRITE(self, event):
-		print("File with path=" + event.path + ", name=" + event.name + " was CLOSE_WRITE'd")
-		print("Is audio file: " + str(ident.identifyAudio(event.name)))
+		logging.debug("File with path=" + event.path + ", name=" + event.name + " was CLOSE_WRITE'd")
+		logging.debug("Is audio file: " + str(ident.identifyAudio(event.name)))
 
-print("PyMediaConverter loading.")
+loglevel = logging.DEBUG
+logging.basicConfig(level=loglevel)
+
+logging.info("PyMediaConverter loading.")
 
 # Instanciate a new WatchManager (will be used to store watches).
 wm = pyinotify.WatchManager()
@@ -20,5 +24,5 @@ wm.add_watch('/tmp', pyinotify.IN_CLOSE_WRITE, rec=True, auto_add=True)
 handler = FileHandler()
 notifier = pyinotify.Notifier(wm, default_proc_fun=handler)
 # Loop forever and handle events.
-print ("Starting event loop.")
+logging.info("Starting event loop.")
 notifier.loop()
