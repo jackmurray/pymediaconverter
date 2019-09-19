@@ -7,5 +7,4 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 
 COPY src /app
 
-CMD [ "python", "/app/pymediaconverter.py" ] 
-
+ENTRYPOINT [ "python", "/app/pymediaconverter.py" ]
