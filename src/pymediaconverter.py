@@ -1,5 +1,6 @@
 import pyinotify
 import mediaidentifier
+import audioconverter
 import logging
 import argparse
 
@@ -10,7 +11,10 @@ args = parser.parse_args()
 class FileHandler(pyinotify.ProcessEvent):
 	def process_IN_CLOSE_WRITE(self, event):
 		logging.debug("File with path=" + event.path + ", name=" + event.name + " was CLOSE_WRITE'd")
-		logging.debug("Is audio file: " + str(ident.identifyAudio(event.name)))
+		isAudioFile = ident.identifyAudio(event.name)
+		logging.debug("Is audio file: " + str(isAudioFile))
+		if isAudioFile:
+			audioconv.convert(event.name)
 
 loglevel = getattr(args, "loglevel", "WARNING")
 logging.basicConfig(level=loglevel)
@@ -23,6 +27,7 @@ wm = pyinotify.WatchManager()
 # process events).
 
 ident = mediaidentifier.MediaIdentifier()
+audioconv = audioconverter.AudioConverter()
 
 # Add a new watch on /tmp for CLOSE_WRITE events (i.e. when a file is ready to be processed)
 wm.add_watch('/tmp', pyinotify.IN_CLOSE_WRITE, rec=True, auto_add=True)

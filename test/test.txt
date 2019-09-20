@@ -3,3 +3,5 @@ touch /tmp/test
 mkdir /tmp/subdir
 touch /tmp/subdir/subfile
 touch /tmp/subdir/audiofile.m4a
+touch /tmp/subdir/audiofile2.m4a
+
