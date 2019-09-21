@@ -30,7 +30,7 @@ ident = mediaidentifier.MediaIdentifier()
 audioconv = audioconverter.AudioConverter()
 
 # Add a new watch on /tmp for CLOSE_WRITE events (i.e. when a file is ready to be processed)
-wm.add_watch('/tmp', pyinotify.IN_CLOSE_WRITE, rec=True, auto_add=True)
+wm.add_watch('/data', pyinotify.IN_CLOSE_WRITE, rec=True, auto_add=True)
 handler = FileHandler()
 notifier = pyinotify.Notifier(wm, default_proc_fun=handler)
 # Loop forever and handle events.
