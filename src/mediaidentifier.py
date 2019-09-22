@@ -3,4 +3,9 @@ class MediaIdentifier:
 	AUDIO_FORMATS = [ ".m4a", ".flac", ".alac" ]
 
 	def identifyAudio(self, filename):
-		return any(x in filename for x in self.AUDIO_FORMATS)
+		for format in self.AUDIO_FORMATS:
+			length = len(format)
+			substring = filename[-length:] #Get the last x characters of the filename, which should hopefully match an entry from AUDIO_FORMATS
+			if substring == format:
+				return format
+		return False
