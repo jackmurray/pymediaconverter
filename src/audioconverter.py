@@ -1,4 +1,3 @@
-import time
 import mediaconverter
 import subprocess
 import logging
