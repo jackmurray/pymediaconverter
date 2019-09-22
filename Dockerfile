@@ -7,8 +7,8 @@ WORKDIR .
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
-COPY src /app
-
 VOLUME /data
+
+COPY src /app
 
 ENTRYPOINT [ "python", "/app/pymediaconverter.py" ]
