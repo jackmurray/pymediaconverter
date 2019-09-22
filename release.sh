@@ -8,4 +8,6 @@ git tag $1
 git push --tags
 make build
 sudo docker tag pymediaconverter:latest jackjcmurray/pymediaconverter:$1
+sudo docker tag pymediaconverter:latest jackjcmurray/pymediaconverter:latest
 sudo docker push jackjcmurray/pymediaconverter:$1
+sudo docker push jackjcmurray/pymediaconverter:latest
