@@ -10,4 +10,6 @@ To run the image:
 
 $ make run
 
-At present, it will watch /tmp for any files that are written to.
+The container expects a volume to be mounted to /data, and will convert anything that lands in there.
+
+Hosted on Docker Hub: https://hub.docker.com/r/jackjcmurray/pymediaconverter
