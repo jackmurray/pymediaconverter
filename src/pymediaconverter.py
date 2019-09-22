@@ -14,7 +14,7 @@ class FileHandler(pyinotify.ProcessEvent):
 		isAudioFile = ident.identifyAudio(event.name)
 		logging.debug("Is audio file: " + str(isAudioFile))
 		if isAudioFile:
-			audioconv.convert(event.name)
+			audioconv.convert(event.pathname, isAudioFile) #Pass the full path to the converter.
 
 loglevel = getattr(args, "loglevel", "WARNING")
 logging.basicConfig(level=loglevel)
