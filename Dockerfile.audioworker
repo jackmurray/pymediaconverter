@@ -1,0 +1,2 @@
+FROM pymediaconverter
+ENTRYPOINT ["celery", "-A", "audioworker", "worker"]
