@@ -1,6 +1,6 @@
-import mediaconverter
-import subprocess
 import logging
+import mediaconverter
+from celtasks.tasks import celery_convert_audio
 
 class AudioConverter(mediaconverter.MediaConverter):
 	"""Audio conversion class"""
@@ -10,5 +10,4 @@ class AudioConverter(mediaconverter.MediaConverter):
 	def convert(self, filename, srcformat):
 		logging.info("AudioConverter converting " + filename + " from " + srcformat + " to " + self.AUDIO_TARGET_FORMAT)
 		outputfilename = filename.replace(srcformat, self.AUDIO_TARGET_FORMAT)
-		subprocess.run(["ffmpeg", "-i", filename, "-b:a", str(self.AUDIO_TARGET_BITRATE)+"k", outputfilename])
-		
+		celery_convert_audio(filename, outputfilename, self.AUDIO_TARGET_BITRATE)
