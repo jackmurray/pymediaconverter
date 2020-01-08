@@ -11,4 +11,4 @@ VOLUME /data
 
 COPY src /app
 
-ENTRYPOINT [ "python", "/app/pymediaconverter.py" ]
+ENTRYPOINT python /app/pymediaconverter.py --loglevel=${LOGLEVEL:-WARNING}
